@@ -7,8 +7,7 @@ class AnimalTypeResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :animals
+  has_many :animals
 
   # Indirect associations
-
 end

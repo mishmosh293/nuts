@@ -13,7 +13,7 @@ class Api::V1::AnimalTypesController < Api::V1::GraphitiController
     animal_type = AnimalTypeResource.build(params)
 
     if animal_type.save
-      render jsonapi: animal_type, status: 201
+      render jsonapi: animal_type, status: :created
     else
       render jsonapi_errors: animal_type
     end
@@ -33,7 +33,7 @@ class Api::V1::AnimalTypesController < Api::V1::GraphitiController
     animal_type = AnimalTypeResource.find(params)
 
     if animal_type.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: animal_type
     end

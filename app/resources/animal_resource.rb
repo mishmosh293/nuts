@@ -13,5 +13,4 @@ class AnimalResource < ApplicationResource
   belongs_to :animal_type
 
   # Indirect associations
-
 end

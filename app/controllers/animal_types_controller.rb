@@ -1,10 +1,10 @@
 class AnimalTypesController < ApplicationController
-  before_action :set_animal_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_animal_type, only: %i[show edit update destroy]
 
   # GET /animal_types
   def index
     @q = AnimalType.ransack(params[:q])
-    @animal_types = @q.result(:distinct => true).includes(:animals).page(params[:page]).per(10)
+    @animal_types = @q.result(distinct: true).includes(:animals).page(params[:page]).per(10)
   end
 
   # GET /animal_types/1
@@ -18,15 +18,14 @@ class AnimalTypesController < ApplicationController
   end
 
   # GET /animal_types/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /animal_types
   def create
     @animal_type = AnimalType.new(animal_type_params)
 
     if @animal_type.save
-      redirect_to @animal_type, notice: 'Animal type was successfully created.'
+      redirect_to @animal_type, notice: "Animal type was successfully created."
     else
       render :new
     end
@@ -35,7 +34,7 @@ class AnimalTypesController < ApplicationController
   # PATCH/PUT /animal_types/1
   def update
     if @animal_type.update(animal_type_params)
-      redirect_to @animal_type, notice: 'Animal type was successfully updated.'
+      redirect_to @animal_type, notice: "Animal type was successfully updated."
     else
       render :edit
     end
@@ -44,17 +43,19 @@ class AnimalTypesController < ApplicationController
   # DELETE /animal_types/1
   def destroy
     @animal_type.destroy
-    redirect_to animal_types_url, notice: 'Animal type was successfully destroyed.'
+    redirect_to animal_types_url,
+                notice: "Animal type was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_animal_type
-      @animal_type = AnimalType.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def animal_type_params
-      params.require(:animal_type).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_animal_type
+    @animal_type = AnimalType.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def animal_type_params
+    params.require(:animal_type).permit(:name, :description)
+  end
 end

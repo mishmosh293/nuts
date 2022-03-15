@@ -1,15 +1,14 @@
 class AnimalsController < ApplicationController
-  before_action :set_animal, only: [:show, :edit, :update, :destroy]
+  before_action :set_animal, only: %i[show edit update destroy]
 
   # GET /animals
   def index
     @q = Animal.ransack(params[:q])
-    @animals = @q.result(:distinct => true).includes(:animal_type).page(params[:page]).per(10)
+    @animals = @q.result(distinct: true).includes(:animal_type).page(params[:page]).per(10)
   end
 
   # GET /animals/1
-  def show
-  end
+  def show; end
 
   # GET /animals/new
   def new
@@ -17,17 +16,16 @@ class AnimalsController < ApplicationController
   end
 
   # GET /animals/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /animals
   def create
     @animal = Animal.new(animal_params)
 
     if @animal.save
-      message = 'Animal was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Animal was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @animal, notice: message
       end
@@ -39,7 +37,7 @@ class AnimalsController < ApplicationController
   # PATCH/PUT /animals/1
   def update
     if @animal.update(animal_params)
-      redirect_to @animal, notice: 'Animal was successfully updated.'
+      redirect_to @animal, notice: "Animal was successfully updated."
     else
       render :edit
     end
@@ -49,22 +47,23 @@ class AnimalsController < ApplicationController
   def destroy
     @animal.destroy
     message = "Animal was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to animals_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_animal
-      @animal = Animal.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def animal_params
-      params.require(:animal).permit(:animal_type_id, :photo, :name, :description, :age)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_animal
+    @animal = Animal.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def animal_params
+    params.require(:animal).permit(:animal_type_id, :photo, :name,
+                                   :description, :age)
+  end
 end

@@ -1,13 +1,13 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe AnimalResource, type: :resource do
-  describe 'creating' do
+  describe "creating" do
     let(:payload) do
       {
         data: {
-          type: 'animals',
-          attributes: { }
-        }
+          type: "animals",
+          attributes: {},
+        },
       }
     end
 
@@ -15,23 +15,24 @@ RSpec.describe AnimalResource, type: :resource do
       AnimalResource.build(payload)
     end
 
-    it 'works' do
-      expect {
-        expect(instance.save).to eq(true), instance.errors.full_messages.to_sentence
-      }.to change { Animal.count }.by(1)
+    it "works" do
+      expect do
+        expect(instance.save).to eq(true),
+                                 instance.errors.full_messages.to_sentence
+      end.to change { Animal.count }.by(1)
     end
   end
 
-  describe 'updating' do
+  describe "updating" do
     let!(:animal) { create(:animal) }
 
     let(:payload) do
       {
         data: {
           id: animal.id.to_s,
-          type: 'animals',
-          attributes: { } # Todo!
-        }
+          type: "animals",
+          attributes: {}, # Todo!
+        },
       }
     end
 
@@ -39,25 +40,25 @@ RSpec.describe AnimalResource, type: :resource do
       AnimalResource.find(payload)
     end
 
-    xit 'works (add some attributes and enable this spec)' do
-      expect {
+    xit "works (add some attributes and enable this spec)" do
+      expect do
         expect(instance.update_attributes).to eq(true)
-      }.to change { animal.reload.updated_at }
+      end.to change { animal.reload.updated_at }
       # .and change { animal.foo }.to('bar') <- example
     end
   end
 
-  describe 'destroying' do
+  describe "destroying" do
     let!(:animal) { create(:animal) }
 
     let(:instance) do
       AnimalResource.find(id: animal.id)
     end
 
-    it 'works' do
-      expect {
+    it "works" do
+      expect do
         expect(instance.destroy).to eq(true)
-      }.to change { Animal.count }.by(-1)
+      end.to change { Animal.count }.by(-1)
     end
   end
 end

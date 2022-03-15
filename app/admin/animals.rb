@@ -1,6 +1,5 @@
 ActiveAdmin.register Animal do
-
- permit_params :animal_type_id, :photo, :name, :description, :age
+  permit_params :animal_type_id, :photo, :name, :description, :age
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -14,5 +13,4 @@ ActiveAdmin.register Animal do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
 end

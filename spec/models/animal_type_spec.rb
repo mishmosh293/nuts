@@ -4,6 +4,8 @@ RSpec.describe AnimalType, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:animals) }
+
     end
 
     describe "InDirect Associations" do

@@ -1,6 +1,8 @@
 class Animal < ApplicationRecord
   # Direct associations
 
+  belongs_to :animal_type
+
   # Indirect associations
 
   # Validations

@@ -1,6 +1,9 @@
 class AnimalType < ApplicationRecord
   # Direct associations
 
+  has_many   :animals,
+             :dependent => :destroy
+
   # Indirect associations
 
   # Validations

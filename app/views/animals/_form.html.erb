@@ -1,7 +1,6 @@
 <% was_validated = animal.errors.any? %>
 
 <%= form_with(model: animal, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for animal_type_id start -->
   <div class="form-group">
     <% animal_type_class = "form-control" %>
     <% animal_type_was_invalid = animal.errors.include?(:animal_type) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :animal_type_id %>
-    <!-- Input for animal_type_id start -->
     <%= f.collection_select :animal_type_id, AnimalType.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for animal_type_id end -->
     <% if animal_type_was_invalid %>
       <% animal.errors.full_messages_for(:animal_type).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for animal_type_id end -->
-  <!-- Label and input for photo start -->
   <div class="form-group">
     <% photo_class = "form-control" %>
     <% photo_was_invalid = animal.errors.include?(:photo) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :photo %>
-    <!-- Input for photo start -->
     <%= f.file_field :photo, class: "form-control" %>
-    <!-- Input for photo end -->
     <% if photo_was_invalid %>
       <% animal.errors.full_messages_for(:photo).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,8 +45,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for photo end -->
-  <!-- Label and input for name start -->
   <div class="form-group">
     <% name_class = "form-control" %>
     <% name_was_invalid = animal.errors.include?(:name) %>
@@ -67,9 +58,7 @@
     <% end %>
 
     <%= f.label :name %>
-    <!-- Input for name start -->
     <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
-    <!-- Input for name end -->
     <% if name_was_invalid %>
       <% animal.errors.full_messages_for(:name).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -78,8 +67,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for name end -->
-  <!-- Label and input for description start -->
   <div class="form-group">
     <% description_class = "form-control" %>
     <% description_was_invalid = animal.errors.include?(:description) %>
@@ -93,9 +80,7 @@
     <% end %>
 
     <%= f.label :description %>
-    <!-- Input for description start -->
     <%= f.text_field :description, class: description_class, placeholder: "Enter description" %>
-    <!-- Input for description end -->
     <% if description_was_invalid %>
       <% animal.errors.full_messages_for(:description).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -104,8 +89,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for description end -->
-  <!-- Label and input for age start -->
   <div class="form-group">
     <% age_class = "form-control" %>
     <% age_was_invalid = animal.errors.include?(:age) %>
@@ -119,9 +102,7 @@
     <% end %>
 
     <%= f.label :age %>
-    <!-- Input for age start -->
     <%= f.number_field :age, class: age_class, placeholder: "Enter age" %>
-    <!-- Input for age end -->
     <% if age_was_invalid %>
       <% animal.errors.full_messages_for(:age).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -130,6 +111,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for age end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

@@ -6,14 +6,10 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Name</dt>
-      <!-- Display name start -->
       <dd><%= animal_type.name %></dd>
-      <!-- Display name end -->
 
       <dt>Description</dt>
-      <!-- Display description start -->
       <dd><%= animal_type.description %></dd>
-      <!-- Display description end -->
 
     </dl>
 
@@ -22,21 +18,17 @@
         <%= link_to_show_or_back animal_type, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link animal_type start -->
       <div class="col">
         <%= link_to edit_animal_type_url(animal_type), class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-      <!-- Edit link animal_type end -->
 
-      <!-- Delete link animal_type start -->
       <div class="col">
         <%= link_to animal_type, method: :delete, data: { confirm: "Do you really want to delete this animal_type?" }, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
-      <!-- Delete link animal_type end -->
     </div>
   </div>
 

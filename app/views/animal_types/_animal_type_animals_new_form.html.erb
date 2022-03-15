@@ -1,52 +1,30 @@
-<!-- Form animal start -->
 <%= form_with(model: @animal, local: true) do |f| %>
-<!-- Form animal end -->
 
-  <!-- Label and input for animal_type_id start -->
-  <!-- Input for animal_type_id start -->
   <%= f.hidden_field :animal_type_id, value: @animal_type.id %>
-  <!-- Input for animal_type_id end -->
-  <!-- Label and input for animal_type_id end -->
 
-  <!-- Label and input for photo start -->
   <div class="form-group">
     <%= f.label :photo %>
 
-    <!-- Input for photo start -->
     <%= f.file_field :photo, class: "form-control" %>
-    <!-- Input for photo end -->
   </div>
-  <!-- Label and input for photo end -->
 
-  <!-- Label and input for name start -->
   <div class="form-group">
     <%= f.label :name %>
 
-    <!-- Input for name start -->
     <%= f.text_field :name, class: "form-control" %>
-    <!-- Input for name end -->
   </div>
-  <!-- Label and input for name end -->
 
-  <!-- Label and input for description start -->
   <div class="form-group">
     <%= f.label :description %>
 
-    <!-- Input for description start -->
     <%= f.text_field :description, class: "form-control" %>
-    <!-- Input for description end -->
   </div>
-  <!-- Label and input for description end -->
 
-  <!-- Label and input for age start -->
   <div class="form-group">
     <%= f.label :age %>
 
-    <!-- Input for age start -->
     <%= f.text_field :age, class: "form-control" %>
-    <!-- Input for age end -->
   </div>
-  <!-- Label and input for age end -->
 
   <%= f.submit "Create animal", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

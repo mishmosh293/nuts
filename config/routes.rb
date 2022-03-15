@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   root :to => "animal_types#index"
   resources :animals
   resources :animal_types

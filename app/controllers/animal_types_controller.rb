@@ -1,26 +1,21 @@
 class AnimalTypesController < ApplicationController
   before_action :set_animal_type, only: %i[show edit update destroy]
 
-  # GET /animal_types
   def index
     @q = AnimalType.ransack(params[:q])
     @animal_types = @q.result(distinct: true).includes(:animals).page(params[:page]).per(10)
   end
 
-  # GET /animal_types/1
   def show
     @animal = Animal.new
   end
 
-  # GET /animal_types/new
   def new
     @animal_type = AnimalType.new
   end
 
-  # GET /animal_types/1/edit
   def edit; end
 
-  # POST /animal_types
   def create
     @animal_type = AnimalType.new(animal_type_params)
 
@@ -31,7 +26,6 @@ class AnimalTypesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /animal_types/1
   def update
     if @animal_type.update(animal_type_params)
       redirect_to @animal_type, notice: "Animal type was successfully updated."
@@ -40,7 +34,6 @@ class AnimalTypesController < ApplicationController
     end
   end
 
-  # DELETE /animal_types/1
   def destroy
     @animal_type.destroy
     redirect_to animal_types_url,
@@ -49,12 +42,10 @@ class AnimalTypesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_animal_type
     @animal_type = AnimalType.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def animal_type_params
     params.require(:animal_type).permit(:name, :description)
   end

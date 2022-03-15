@@ -24,7 +24,12 @@ class AnimalsController < ApplicationController
     @animal = Animal.new(animal_params)
 
     if @animal.save
-      redirect_to @animal, notice: 'Animal was successfully created.'
+      message = 'Animal was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @animal, notice: message
+      end
     else
       render :new
     end

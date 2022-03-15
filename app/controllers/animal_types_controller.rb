@@ -8,6 +8,7 @@ class AnimalTypesController < ApplicationController
 
   # GET /animal_types/1
   def show
+    @animal = Animal.new
   end
 
   # GET /animal_types/new

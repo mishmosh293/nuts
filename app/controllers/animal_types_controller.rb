@@ -3,7 +3,7 @@ class AnimalTypesController < ApplicationController
 
   # GET /animal_types
   def index
-    @animal_types = AnimalType.all
+    @animal_types = AnimalType.page(params[:page]).per(10)
   end
 
   # GET /animal_types/1

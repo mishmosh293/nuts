@@ -7,7 +7,11 @@
     <dl class="mb-1">
       <dt>Animal type</dt>
       <!-- Display animal_type_id start -->
-      <dd><%= animal.animal_type_id %></dd>
+      <dd>
+        <% if @animal.animal_type.present? %>
+          <%= link_to animal.animal_type, animal.animal_type %>
+        <% end %>
+      </dd>
       <!-- Display animal_type_id end -->
 
       <dt>Photo</dt>

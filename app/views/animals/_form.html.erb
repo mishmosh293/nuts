@@ -16,7 +16,7 @@
 
     <%= f.label :animal_type_id %>
     <!-- Input for animal_type_id start -->
-    <%= f.number_field :animal_type_id, class: animal_type_class, placeholder: "Enter animal type" %>
+    <%= f.collection_select :animal_type_id, AnimalType.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for animal_type_id end -->
     <% if animal_type_was_invalid %>
       <% animal.errors.full_messages_for(:animal_type).each do |message| %>

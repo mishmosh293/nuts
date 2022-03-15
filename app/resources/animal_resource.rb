@@ -10,6 +10,8 @@ class AnimalResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :animal_type
+
   # Indirect associations
 
 end
